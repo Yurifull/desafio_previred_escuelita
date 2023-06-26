@@ -1,4 +1,4 @@
-# API de gestion de empresas y trabajadores
+# API de gestión de empresas y trabajadores
 
 Esta API RESTful proporciona un conjunto de servicios para gestionar trabajadores y empresas. Permite realizar operaciones de registro, obtención, actualización y eliminación de trabajadores y empresas, proporcionando una interfaz sencilla y segura para interactuar con los datos.
 
