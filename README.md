@@ -1,39 +1,55 @@
-# DESAFIO ESCUELITA PREVIRED
+# API de gestion de empresas y trabajadores
 
-## Comenzando 🚀
+Esta API RESTful proporciona un conjunto de servicios para gestionar trabajadores y empresas. Permite realizar operaciones de registro, obtención, actualización y eliminación de trabajadores y empresas, proporcionando una interfaz sencilla y segura para interactuar con los datos.
 
-_La jerarquía de carpetas del proyecto debe respetar lo siguiente._
+## Características Principales
 
-```
-	-RAÍZ
-		-> fuentes - Deja todo el código fuente del ejercicio.
-		-> script - Script de insersión de schemas, tablas y data base del ejercicio.
-```
+- Registro de Trabajadores: Permite crear nuevos trabajadores y asociarlos a empresas existentes. Se realizan validaciones de datos y verificaciones para evitar duplicados y mantener la integridad de la información.
 
-## Instrucciones del ejercicio
+- Gestión de Empresas: Proporciona funcionalidades para crear, obtener, actualizar y eliminar empresas. Es posible realizar operaciones de búsqueda por ID y obtener la lista completa de empresas registradas.
 
-El portal privado de PREVIRED ha decidido crear un nuevo módulo para sus clientes en empresas. Es por esto que se le ha solicitado al nuevo Desarrollador crear servicios Rest que permitan registrar la información de la(s) Empresa(s) con sus trabajadores activos asociados.
+- Consulta de Trabajadores: Permite obtener la lista completa de trabajadores registrados y buscar trabajadores individuales por ID.
 
-Los datos de la empresa a registrar son: Rut, Razón social, fecha inserción registro. Por otra parte, para los trabajadores (Pueden ser más de uno) asociados a la empresa. Deberás registrar su Rut, Nombre, Apellido paterno, Apellido materno y Dirección física.
+- Actualización y Eliminación: Ofrece la posibilidad de actualizar y eliminar tanto trabajadores como empresas mediante sus respectivos ID.
 
-Como el producto es nuevo, deberás crear tu solución para una base de datos Postgres y tu servicio Rest con todas las acciones para las nuevas 2 tablas (CRUD completo con acciones: Crear registro, modificar, eliminar y obtener para ambas tablas Empresa y Trabajador(es)). 
+## Tecnologías Utilizadas
 
-Mucha suerte y danos tú mejor esfuerzo.
+La aplicación ha sido desarrollada utilizando las siguientes tecnologías:
 
-### Requisitos (Excluyente para el cupo) 📋
+- Spring Boot: Framework de desarrollo de aplicaciones Java para la creación de servicios RESTful.
+- Spring Data JPA: Biblioteca de persistencia que facilita el acceso a bases de datos relacionales.
+- Swagger: Herramienta para la documentación y prueba de APIs RESTful.
+- Validaciones y Manejo de Errores: Se implementan validaciones de datos y se gestionan los posibles errores que puedan ocurrir durante las operaciones.
 
-```
--> Se debe implementar la solución en Spring Boot, JPA/Hibernate, Maven.
--> Debes comentar tu código (Busca formas de buenas prácticas de SONAR).
--> El código debe ser escrito en Inglés/Español.
--> La solución debe contener un README.md con las instrucciones para compilar e instalar.
--> Hay bonus si usas SWAGGER (Opcional, no excluyente).
--> Enviar una copia Email a escueladetalentosti@previred.com y colocar en ASUNTO: "Postulación desafío ESCUELITA". Para confirmar la finalización de la tarea y revisión.
-```
+## Instalación
 
-## Entrega solcuión
+Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local:
 
-+ La solución debe ser enviada vía un pull request a este repositorio "crea un Fork antes".
-+ Dudas sobre el ejercicio a escueladetalentosti@previred.com
+1. Clona este repositorio en tu máquina local o descárgalo como archivo ZIP.
 
-NOTA: Todos los pull request serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.
+2. Asegúrate de tener instalado Java Development Kit (JDK) en tu sistema. Puedes verificarlo ejecutando el siguiente comando en tu terminal:
+
+```java -version```
+
+Si no tienes instalado Java, puedes descargarlo e instalarlo desde el sitio web oficial de Oracle.
+
+3. Abre tu entorno de desarrollo integrado (IDE) preferido. Recomendamos utilizar Spring Tool Suite (STS) para una integración sin problemas.
+
+4. Importa el proyecto en tu IDE como un proyecto de Maven existente.
+
+5. Espera a que las dependencias del proyecto se descarguen e instalen automáticamente. Esto puede tomar algún tiempo dependiendo de tu conexión a Internet.
+
+6. Una vez que todas las dependencias se hayan descargado correctamente, busca la clase principal del proyecto llamada `Application` y ejecútala como una aplicación Java.
+
+7. La aplicación se ejecutará en un servidor integrado de Spring Boot y se levantará en la siguiente URL por defecto: `http://localhost:8080`. Puedes acceder a ella utilizando tu navegador web.
+
+8. ¡Y eso es todo! Ahora deberías tener la aplicación API RESTful ejecutándose en tu entorno local. Puedes probar los diferentes endpoints utilizando herramientas como Postman o cURL.
+
+Recuerda que puedes consultar la documentación de la API generada automáticamente con Swagger accediendo a la siguiente URL: `http://localhost:8080/swagger-ui/index.html`. Allí encontrarás información detallada sobre cada uno de los endpoints disponibles y cómo interactuar con ellos.
+
+## Uso
+Una vez que la aplicación esté en funcionamiento, podrás interactuar con los endpoints proporcionados mediante las peticiones HTTP correspondientes. Consulta la documentación de la API para obtener información detallada sobre cada uno de los endpoints y los datos que se esperan.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
