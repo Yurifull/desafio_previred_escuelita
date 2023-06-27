@@ -9,6 +9,6 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     boolean existsByRut(String rut);
 
-    void deleteByRut (String rut);
+    Company findCompanyByRut (String rut);
 
 }
