@@ -26,7 +26,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         if(companyRepository.existsByRut(rut)) {
 
-            return new ResponseEntity<>("Rut already registered", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Rut already registered", HttpStatus.CONFLICT);
 
         } else if (!rut.isEmpty() && !razonSocial.isEmpty()) {
 
@@ -36,7 +36,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         } else {
 
-            return new ResponseEntity<>("Error, verify the data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Error, verify the data", HttpStatus.CONFLICT);
 
         }
     }
@@ -47,11 +47,27 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public ResponseEntity<Object> updateCompany(Company company) {
-        if (companyRepository.existsById(company.getId())) {
+    public ResponseEntity<?> getCompany(String rut) {
 
+        if(companyRepository.existsByRut(rut)){
+            Company company = companyRepository.findCompanyByRut(rut);
+            CompanyDTO companyDTO = companyRepository.findById(company.getId()).map(CompanyDTO::new).orElse(null);
+            return new ResponseEntity<>(companyDTO, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>("Company does not exist", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> updateCompany(String rut, Company companyUpdated) {
+        Company company = companyRepository.findCompanyByRut(rut);
+
+        if(company != null){
+            company.setRut(companyUpdated.getRut());
+            company.setRazonSocial(companyUpdated.getRazonSocial());
             companyRepository.save(company);
-            return new ResponseEntity<>("Company updated", HttpStatus.OK);
+            return new ResponseEntity<>("Company updated! " + company, HttpStatus.OK);
 
         } else {
 
@@ -61,8 +77,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public ResponseEntity<Object> deleteCompany(String rut) {
-        if(companyRepository.existsByRut(rut)){
-            companyRepository.deleteByRut(rut);
+        Company company = companyRepository.findCompanyByRut(rut);
+        if(company != null){
+            companyRepository.deleteById(company.getId());
             return new ResponseEntity<>("Company deleted", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Company does not exist", HttpStatus.NOT_FOUND);

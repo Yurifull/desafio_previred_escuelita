@@ -13,7 +13,9 @@ public interface CompanyService {
 
     List<CompanyDTO> getCompanies();
 
-    ResponseEntity<Object> updateCompany(Company company);
+    ResponseEntity<?> getCompany(String rut);
+
+    ResponseEntity<Object> updateCompany(String rut, Company updatedCompany);
 
     ResponseEntity<Object> deleteCompany(String rut);
 
