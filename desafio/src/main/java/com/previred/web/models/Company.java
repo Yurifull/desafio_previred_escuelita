@@ -69,4 +69,13 @@ public class Company {
     public void setWorkers(List<Worker> workers) {
         this.workers = workers;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "rut='" + rut + '\'' +
+                ", razonSocial='" + razonSocial + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }
