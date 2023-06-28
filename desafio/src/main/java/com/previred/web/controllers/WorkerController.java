@@ -172,7 +172,8 @@ public class WorkerController {
                             description = "Shows that the worker has not been found.",
                             value = "Worker not found")
             }, mediaType = MediaType.ALL_VALUE))})
-    public ResponseEntity<Object> deleteWorker(@PathVariable String rut) {
+    public ResponseEntity<Object> deleteWorker(@Parameter(description = "Worker's RUT (only numbers)", example = "129736541")
+                                               @PathVariable String rut) {
 
         return workerServiceImpl.deleteWorker(rut);
     }
