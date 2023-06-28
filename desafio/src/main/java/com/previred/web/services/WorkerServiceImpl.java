@@ -5,6 +5,7 @@ import com.previred.web.models.Company;
 import com.previred.web.models.Worker;
 import com.previred.web.repositories.CompanyRepository;
 import com.previred.web.repositories.WorkerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class WorkerServiceImpl implements WorkerService {
     private final WorkerRepository workerRepository;
     private final CompanyRepository companyRepository;
 
+    @Autowired
     public WorkerServiceImpl(WorkerRepository workerRepository, CompanyRepository companyRepository) {
         this.workerRepository = workerRepository;
         this.companyRepository = companyRepository;
@@ -25,7 +27,7 @@ public class WorkerServiceImpl implements WorkerService {
     @Override
     public ResponseEntity<Object> createWorker(String rut, String firstName, String lastName, String secondLastName, String address, String companyRut) {
 
-        if (workerRepository.existsByRut(rut)) {
+        if (workerRepository.existsWorkerByRut(rut)) {
 
             return new ResponseEntity<>("Rut already registered", HttpStatus.CONFLICT);
 
@@ -54,13 +56,13 @@ public class WorkerServiceImpl implements WorkerService {
     @Override
     public ResponseEntity<?> getWorker(String rut) {
 
-        if (workerRepository.existsByRut(rut)) {
+        if (workerRepository.existsWorkerByRut(rut)) {
             Worker worker = workerRepository.findWorkerByRut(rut);
             WorkerDTO workerDTO = workerRepository.findById(worker.getId()).map(WorkerDTO::new).orElse(null);
             return new ResponseEntity<>(workerDTO, HttpStatus.OK);
 
         } else {
-            return new ResponseEntity<>("Worker does not exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Worker not found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -74,7 +76,7 @@ public class WorkerServiceImpl implements WorkerService {
             worker.setLastName(workerDTO.getLastName());
             worker.setSecondLastName(workerDTO.getSecondLastName());
             worker.setAddress(workerDTO.getAddress());
-            if (companyRepository.existsByRut(companyRut)) {
+            if (companyRepository.existsCompanyByRut(companyRut)) {
                 Company company = companyRepository.findCompanyByRut(companyRut);
                 worker.setCompany(company);
             }
@@ -83,7 +85,7 @@ public class WorkerServiceImpl implements WorkerService {
 
         } else {
 
-            return new ResponseEntity<>("Worker does not exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Worker not found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -95,7 +97,7 @@ public class WorkerServiceImpl implements WorkerService {
             return new ResponseEntity<>("Worker deleted", HttpStatus.OK);
 
         } else {
-            return new ResponseEntity<>("Worker does not exists", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Worker not found", HttpStatus.NOT_FOUND);
         }
     }
 }

@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class CompanyController {
 
+
     private final CompanyServiceImpl companyServiceImpl;
 
+    @Autowired
     public CompanyController(CompanyServiceImpl companyServiceImpl) {
         this.companyServiceImpl = companyServiceImpl;
     }
@@ -35,7 +38,7 @@ public class CompanyController {
                             summary = "Creates a company",
                             description = "Creates a company.",
                             value = "Company created")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "409", description = "Company already exist", content = @Content(examples = {
                     @ExampleObject(name = "companyRegistered",
                             summary = "Shows that the company already exist",
@@ -45,7 +48,7 @@ public class CompanyController {
                             summary = "Shows there is an error in the input data",
                             description = "Shows there is an error in the input data.",
                             value = "Error, verify the data")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<Object> createCompany(@Parameter(description = "Company's RUT (only numbers)", example = "529736541")
                                                     @RequestParam(name = "rut") String rut,
                                                 @RequestParam(name = "companyName") String companyName,
@@ -80,7 +83,7 @@ public class CompanyController {
                                             "workers": []
                                         }
                                     ]""")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<List<CompanyDTO>> getCompanies() {
         return companyServiceImpl.getCompanies();
     }
@@ -102,15 +105,15 @@ public class CompanyController {
                                             "workers": []
                                          
                                         }
-                              
+                                                                  
                                     ]""")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "404", description = "Company not found", content = @Content(examples = {
                     @ExampleObject(name = "companyRegistered",
-                            summary = "Company not found",
-                            description = "Company not found.",
-                            value = "Company does not exist")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+                            summary = "Shows that the company has not been found",
+                            description = "Shows that the company has not been found.",
+                            value = "Company not found")
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<?> getCompany(@Parameter(description = "Company's RUT (only numbers)", example = "529736541")
                                             @PathVariable String rut){
         return companyServiceImpl.getCompany(rut);
@@ -125,13 +128,13 @@ public class CompanyController {
                             summary = "Updates a company",
                             description = "Updates a company.",
                             value = "Company updated! Company{rut='503472385', companyName='Motorola', date=1994-10-13}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "404", description = "Company not found", content = @Content(examples = {
                     @ExampleObject(name = "companyRegistered",
-                            summary = "Company not found",
-                            description = "Company not found.",
-                            value = "Company does not exist")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+                            summary = "Shows that the company has not been found",
+                            description = "Shows that the company has not been found.",
+                            value = "Company not found")
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<Object> updateCompany(@Parameter(description = "Company's RUT (only numbers)", example = "529736541")
                                                     @PathVariable String rut,
                                                 @RequestBody CompanyDTO companyDTO) {
@@ -148,13 +151,13 @@ public class CompanyController {
                             summary = "Deletes a company",
                             description = "Deletes a company.",
                             value = "Company deleted")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "404", description = "Company not found", content = @Content(examples = {
                     @ExampleObject(name = "companyRegistered",
-                            summary = "Company not found",
-                            description = "Company not found.",
-                            value = "Company does not exist")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+                            summary = "Shows that the company has not been found",
+                            description = "Shows that the company has not been found.",
+                            value = "Company not found")
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<Object> deleteCompany(@Parameter(description = "Company's RUT (only numbers)", example = "529736541")
                                                     @PathVariable String rut) {
 
@@ -169,13 +172,13 @@ public class CompanyController {
                             summary = "Worker successfully added to the company",
                             description = "Worker successfully added to the company.",
                             value = "Worker added to Company{rut='423456789', companyName='Apple', date=2021-03-07}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "404", description = "Company not found", content = @Content(examples = {
                     @ExampleObject(name = "companyRegistered",
-                            summary = "Company not found",
-                            description = "Company not found.",
-                            value = "Company does not exist")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+                            summary = "Shows that the company has not been found",
+                            description = "Shows that the company has not been found.",
+                            value = "Company not found")
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<Object> addWorker(@Parameter(description = "Company's RUT (only numbers)", example = "529736541")
                                                 @RequestParam(name = "rut") String rut,
                                             @RequestBody WorkerDTO workerDTO) {

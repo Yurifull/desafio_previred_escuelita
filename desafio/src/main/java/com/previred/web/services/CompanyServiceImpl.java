@@ -6,6 +6,7 @@ import com.previred.web.models.Company;
 import com.previred.web.models.Worker;
 import com.previred.web.repositories.CompanyRepository;
 import com.previred.web.repositories.WorkerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
     private final WorkerRepository workerRepository;
 
+    @Autowired
     public CompanyServiceImpl(CompanyRepository companyRepository, WorkerRepository workerRepository) {
         this.companyRepository = companyRepository;
         this.workerRepository = workerRepository;
@@ -28,7 +30,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public ResponseEntity<Object> createCompany(String rut, String razonSocial, LocalDate date) {
 
-        if(companyRepository.existsByRut(rut)) {
+        if (companyRepository.existsCompanyByRut(rut)) {
 
             return new ResponseEntity<>("Rut already registered", HttpStatus.CONFLICT);
 
@@ -54,13 +56,13 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public ResponseEntity<?> getCompany(String rut) {
 
-        if (companyRepository.existsByRut(rut)) {
+        if (companyRepository.existsCompanyByRut(rut)) {
             Company company = companyRepository.findCompanyByRut(rut);
             CompanyDTO companyDTO = companyRepository.findById(company.getId()).map(CompanyDTO::new).orElse(null);
             return new ResponseEntity<>(companyDTO, HttpStatus.OK);
 
         } else {
-            return new ResponseEntity<>("Company does not exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Company not found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -76,7 +78,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         } else {
 
-            return new ResponseEntity<>("Company does not exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Company not found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -88,7 +90,7 @@ public class CompanyServiceImpl implements CompanyService {
             return new ResponseEntity<>("Company deleted", HttpStatus.OK);
 
         } else {
-            return new ResponseEntity<>("Company does not exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Company not found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -101,7 +103,7 @@ public class CompanyServiceImpl implements CompanyService {
             workerRepository.save(worker);
             return new ResponseEntity<>("Worker added to " + company, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Company does not exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Company not found", HttpStatus.NOT_FOUND);
         }
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface WorkerRepository extends JpaRepository<Worker, Long> {
 
-    boolean existsByRut(String rut);
+    boolean existsWorkerByRut(String rut);
 
     Worker findWorkerByRut(String rut);
 }

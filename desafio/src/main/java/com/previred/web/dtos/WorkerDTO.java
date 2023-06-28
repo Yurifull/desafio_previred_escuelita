@@ -4,10 +4,12 @@ import com.previred.web.models.Company;
 import com.previred.web.models.Worker;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class WorkerDTO {
 
     @Schema(hidden = true)

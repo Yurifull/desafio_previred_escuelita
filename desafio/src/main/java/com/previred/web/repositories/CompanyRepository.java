@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
-    boolean existsByRut(String rut);
+    boolean existsCompanyByRut(String rut);
 
     Company findCompanyByRut (String rut);
 

@@ -3,6 +3,7 @@ package com.previred.web.dtos;
 import com.previred.web.models.Company;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class CompanyDTO {
 
     @Schema(hidden = true)

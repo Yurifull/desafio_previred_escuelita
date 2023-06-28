@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class WorkerController {
 
     private final WorkerServiceImpl workerServiceImpl;
 
+    @Autowired
     public WorkerController(WorkerServiceImpl workerServiceImpl) {
         this.workerServiceImpl = workerServiceImpl;
     }
@@ -32,7 +34,7 @@ public class WorkerController {
                             summary = "Creates a worker",
                             description = "Creates a worker.",
                             value = "Worker updated! Worker{rut='123456789', firstName='Fabian', lastName='Quezada', secondLastName='Mendoza', address='Gran Avenida 12'}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "409", description = "Verify data", content = @Content(examples = {
                     @ExampleObject(name = "WorkerRegistered",
                             summary = "Shows that worker already exist",
@@ -42,7 +44,7 @@ public class WorkerController {
                             summary = "Shows there is an error in the input data",
                             description = "Shows there is an error in the input data.",
                             value = "Error, verify the data")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<Object> createWorker(@Parameter(description = "Worker's RUT (only numbers)", example = "129736541")
                                                @RequestParam(name = "rut") String rut,
                                                @RequestParam(name = "firstName") String firstName,
@@ -87,7 +89,7 @@ public class WorkerController {
                                             "address": "Camino agricola 123",
                                             "company": null
                                         }]""")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<List<WorkerDTO>> getWorkers() {
         return workerServiceImpl.getWorkers();
     }
@@ -114,13 +116,13 @@ public class WorkerController {
                                             "date": "2003-01-02"
                                         }
                                     }""")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "404", description = "Worker not found", content = @Content(examples = {
                     @ExampleObject(name = "WorkerRegistered",
                             summary = "Shows that the worker has not been found",
                             description = "Shows that the worker has not been found.",
-                            value = "Worker does not exist")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+                            value = "Worker not found")
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<?> getWorker(@Parameter(description = "Worker's RUT (only numbers)", example = "129736541")
                                        @PathVariable String rut) {
         return workerServiceImpl.getWorker(rut);
@@ -134,13 +136,13 @@ public class WorkerController {
                             summary = "Updates worker information",
                             description = "Updates worker information.",
                             value = "Worker updated! Worker{rut='123456789', firstName='Fabian', lastName='Quezada', secondLastName='Mendoza', address='Gran Avenida 12'}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "404", description = "Worker not found", content = @Content(examples = {
                     @ExampleObject(name = "workerNotUpdated",
-                            summary = "Shows that worker does not exist",
-                            description = "Shows that worker does not exist.",
-                            value = "Worker does not exist")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+                            summary = "Shows that the worker has not been found",
+                            description = "Shows that the worker has not been found.",
+                            value = "Worker not found")
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<Object> updateWorker(@Parameter(description = "Worker's RUT (only numbers)", example = "129736541")
                                                @PathVariable(name = "rut") String rut,
                                                @Parameter(description = "Company's RUT (only numbers ex.529736541)")
@@ -158,13 +160,13 @@ public class WorkerController {
                             summary = "Deletes a worker",
                             description = "Deletes a worker.",
                             value = "Worker deleted")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }, mediaType = MediaType.ALL_VALUE)),
             @ApiResponse(responseCode = "404", description = "Worker not found", content = @Content(examples = {
                     @ExampleObject(name = "workerNotDeleted",
-                            summary = "Shows that worker does not exist",
-                            description = "Shows that worker does not exist.",
-                            value = "Worker does not exist")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
+                            summary = "Shows that the worker has not been found",
+                            description = "Shows that the worker has not been found.",
+                            value = "Worker not found")
+            }, mediaType = MediaType.ALL_VALUE))})
     public ResponseEntity<Object> deleteWorker(@PathVariable String rut) {
 
         return workerServiceImpl.deleteWorker(rut);
