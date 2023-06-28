@@ -2,21 +2,33 @@ package com.previred.web.dtos;
 
 import com.previred.web.models.Company;
 import com.previred.web.models.Worker;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class WorkerDTO {
 
+    @Schema(hidden = true)
     private Long id;
 
+    @Schema(description = "Worker's RUT", example = "123456789")
     private String rut;
 
+    @Schema(description = "First name", example = "Camilo")
     private String firstName;
 
+    @Schema(description = "Last name", example = "Quezada")
     private String lastName;
 
+    @Schema(description = "Second last name", example = "Urrutia")
     private String secondLastName;
 
+    @Schema(description = "Address", example = "Balmaceda 1504, Rancagua")
     private String address;
 
+    @Schema(hidden = true)
     private Company company;
 
     public WorkerDTO (Worker worker) {
@@ -29,55 +41,4 @@ public class WorkerDTO {
         this.company = worker.getCompany();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getRut() {
-        return rut;
-    }
-
-    public void setRut(String rut) {
-        this.rut = rut;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getSecondLastName() {
-        return secondLastName;
-    }
-
-    public void setSecondLastName(String secondLastName) {
-        this.secondLastName = secondLastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 }
