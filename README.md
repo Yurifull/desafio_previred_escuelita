@@ -1,39 +1,48 @@
 # DESAFIO ESCUELITA PREVIRED
+Este repositorio corresponde al desafío requerido por parte de PREVIRED, en el cual se crearon servicios REST para una empresa llamada PREVIRED tuviera registro de la información de sus clientes en empresas y sus trabajadores.
 
-## Comenzando 🚀
+## Dependecias
+- spring-boot-devtools
+- spring-boot-starter-data-jpa
+- spring-boot-starter-web
+- spring-boot-starter-test
+- postgresql
+- lombok
 
-_La jerarquía de carpetas del proyecto debe respetar lo siguiente._
+## Programas utilizados
+Para ejecutar el programa correctamente se deben instalar los siguientes programas:
+- IDE Visual Studio Code
+- Extensiones Visual Studio Code:
+	- Extension Pack for Java
+	- Spring Initializr Java Support
+	- Spring Boot Tools
+	- Spring Boot Dashboard
+- PostgreSQL
+- Postman
 
-```
-	-RAÍZ
-		-> fuentes - Deja todo el código fuente del ejercicio.
-		-> script - Script de insersión de schemas, tablas y data base del ejercicio.
-```
+## Instalación y ejecución
+### Crear y poblar la base de datos
+Click derecho en la seccion Tablas de una base de datos en PostgreSQL y seleccionar la opción Query Tool y pegar el codigo SQL de los script XXXXX
 
-## Instrucciones del ejercicio
+### Acceso a la base de datos
+En el archivo ``application.properties`` se debe ingresar la contraseña, que en este caso es ``password``
 
-El portal privado de PREVIRED ha decidido crear un nuevo módulo para sus clientes en empresas. Es por esto que se le ha solicitado al nuevo Desarrollador crear servicios Rest que permitan registrar la información de la(s) Empresa(s) con sus trabajadores activos asociados.
+### Configuración Spring Boot
+Dentro del archivo ``pom.xml`` se debe cambiar la version de Spring Boot a la version ``2.7.5`` para un correcto funcionamiento del programa. En caso de que tenga esa version se puede omitir el paso.
 
-Los datos de la empresa a registrar son: Rut, Razón social, fecha inserción registro. Por otra parte, para los trabajadores (Pueden ser más de uno) asociados a la empresa. Deberás registrar su Rut, Nombre, Apellido paterno, Apellido materno y Dirección física.
+### Como ejecutar
+Presionar el icono de la extension de Spring Boot en la barra lateral y posteriormente en la sección de ``APPS`` donde dice desafio_escuelita, debe presionarse el boton que dice ``Run`` y se ejecutara el programa.
 
-Como el producto es nuevo, deberás crear tu solución para una base de datos Postgres y tu servicio Rest con todas las acciones para las nuevas 2 tablas (CRUD completo con acciones: Crear registro, modificar, eliminar y obtener para ambas tablas Empresa y Trabajador(es)). 
+### Comprobar funcionamiento
+Dentro de ``Postman`` se puede obtener, guardar, eliminar y actualizar los datos de la base de datos. Para esto es necesario agregar en la barra de busqueda ``localhost:8080`` y posteriormente las URLs creadas en el controlador.
 
-Mucha suerte y danos tú mejor esfuerzo.
+Para la tabla de empresa: ``/company``
+Para la tabla de empleados: ``/employee``
 
-### Requisitos (Excluyente para el cupo) 📋
+Guardar datos: ``/save``
+Actualizar datos: ``/update``
+Eliminar datos: ``/delete/{id}``
+Obtener datos: ``/findAll``
 
-```
--> Se debe implementar la solución en Spring Boot, JPA/Hibernate, Maven.
--> Debes comentar tu código (Busca formas de buenas prácticas de SONAR).
--> El código debe ser escrito en Inglés/Español.
--> La solución debe contener un README.md con las instrucciones para compilar e instalar.
--> Hay bonus si usas SWAGGER (Opcional, no excluyente).
--> Enviar una copia Email a escueladetalentosti@previred.com y colocar en ASUNTO: "Postulación desafío ESCUELITA". Para confirmar la finalización de la tarea y revisión.
-```
 
-## Entrega solcuión
 
-+ La solución debe ser enviada vía un pull request a este repositorio "crea un Fork antes".
-+ Dudas sobre el ejercicio a escueladetalentosti@previred.com
-
-NOTA: Todos los pull request serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.

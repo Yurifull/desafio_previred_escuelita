@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DesafioEscuelitaApplication<desafio_escuelita>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.previred.desafio_escuelita.DesafioEscuelitaApplication",
+            "projectName": "desafio_escuelita",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
