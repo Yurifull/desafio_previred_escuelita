@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CompanyService {
 
-    ResponseEntity<Object> createCompany(String rut, String razonSocial, LocalDate date);
+    ResponseEntity<Object> createCompany(String rut, String companyName, LocalDate date);
 
     ResponseEntity<List<CompanyDTO>> getCompanies();
 

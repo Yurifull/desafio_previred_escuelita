@@ -26,6 +26,7 @@ public class WorkerController {
         this.workerServiceImpl = workerServiceImpl;
     }
 
+    //Endpoint to create a worker
     @PostMapping("/worker")
     @Operation(summary = "Create a worker")
     @ApiResponses(value = {
@@ -57,6 +58,7 @@ public class WorkerController {
         return workerServiceImpl.createWorker(rut, firstName, lastName, secondLastName, address, companyRut);
     }
 
+    //Endpoint to get a list of all workers
     @GetMapping("/workers")
     @Operation(summary = "Get a list of all workers")
     @ApiResponses(value = {
@@ -94,6 +96,7 @@ public class WorkerController {
         return workerServiceImpl.getWorkers();
     }
 
+    //Endpoint to get a worker by its RUT
     @GetMapping("/worker/{rut}")
     @Operation(summary = "Get a worker by its RUT")
     @ApiResponses(value = {
@@ -128,6 +131,7 @@ public class WorkerController {
         return workerServiceImpl.getWorker(rut);
     }
 
+    //Endpoint to update a worker by its rut
     @PutMapping("/worker/{rut}")
     @Operation(summary = "Update a worker by its RUT")
     @ApiResponses(value = {
@@ -152,6 +156,7 @@ public class WorkerController {
         return workerServiceImpl.updateWorker(rut, workerDTO, companyRut);
     }
 
+    //Endpoint to delete a worker by its RUT
     @DeleteMapping("/worker/{rut}")
     @Operation(summary = "Delete a worker by its RUT")
     @ApiResponses(value = {

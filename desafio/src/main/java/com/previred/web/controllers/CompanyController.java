@@ -30,6 +30,7 @@ public class CompanyController {
         this.companyServiceImpl = companyServiceImpl;
     }
 
+    //Endpoint to create a company
     @PostMapping("/company")
     @Operation(summary = "Create a company")
     @ApiResponses(value = {
@@ -59,6 +60,7 @@ public class CompanyController {
 
     }
 
+    //Endpoint to get a list of all companies
     @GetMapping("/companies")
     @Operation(summary = "Get a list of all companies")
     @ApiResponses(value = {
@@ -88,6 +90,7 @@ public class CompanyController {
         return companyServiceImpl.getCompanies();
     }
 
+    //Endpoint to get a company by its RUT
     @GetMapping("/company/{rut}")
     @Operation(summary = "Get a company by its RUT")
     @ApiResponses(value = {
@@ -119,7 +122,7 @@ public class CompanyController {
         return companyServiceImpl.getCompany(rut);
     }
 
-
+    //Endpoint to update a company by its RUT
     @PutMapping("/company/{rut}")
     @Operation(summary = "Update a company by its RUT")
     @ApiResponses(value = {
@@ -143,6 +146,7 @@ public class CompanyController {
 
     }
 
+    //Endpoint to delete a company by its RUT
     @DeleteMapping("/company/{rut}")
     @Operation(summary = "Delete a company by its Rut")
     @ApiResponses(value = {
@@ -164,6 +168,7 @@ public class CompanyController {
         return companyServiceImpl.deleteCompany(rut);
     }
 
+    //Endpoint to add a worker to a company
     @PostMapping("/worker/company")
     @Operation(summary = "Add a worker to a company")
     @ApiResponses(value = {

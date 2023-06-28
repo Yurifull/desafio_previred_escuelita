@@ -24,6 +24,7 @@ public class WorkerServiceImpl implements WorkerService {
         this.companyRepository = companyRepository;
     }
 
+    //Creates a worker with the parameters if the given RUT is not already registered.
     @Override
     public ResponseEntity<Object> createWorker(String rut, String firstName, String lastName, String secondLastName, String address, String companyRut) {
 
@@ -45,6 +46,7 @@ public class WorkerServiceImpl implements WorkerService {
         }
     }
 
+    //Get a list of all workers even if there are none.
     @Override
     public ResponseEntity<List<WorkerDTO>> getWorkers() {
         //return workerRepository.findAll().stream().map(WorkerDTO::new).collect(toList());
@@ -53,6 +55,7 @@ public class WorkerServiceImpl implements WorkerService {
 
     }
 
+    //Get a worker by its RUT, If it exists, returns the data.
     @Override
     public ResponseEntity<?> getWorker(String rut) {
 
@@ -66,6 +69,7 @@ public class WorkerServiceImpl implements WorkerService {
         }
     }
 
+    //Updates the worker associated with the given rut, if the worker exists, updates.
     @Override
     public ResponseEntity<Object> updateWorker(String rut, WorkerDTO workerDTO, String companyRut) {
         Worker worker = workerRepository.findWorkerByRut(rut);
@@ -89,6 +93,7 @@ public class WorkerServiceImpl implements WorkerService {
         }
     }
 
+    //Deletes a worker by its RUT if repository can find it in DB.
     @Override
     public ResponseEntity<Object> deleteWorker(String rut) {
         Worker worker = workerRepository.findWorkerByRut(rut);
