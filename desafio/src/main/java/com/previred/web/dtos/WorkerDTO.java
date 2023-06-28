@@ -1,5 +1,6 @@
 package com.previred.web.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.previred.web.models.Company;
 import com.previred.web.models.Worker;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -30,6 +31,7 @@ public class WorkerDTO {
     @Schema(description = "Address", example = "Balmaceda 1504, Rancagua")
     private String address;
 
+    @JsonIgnore
     @Schema(hidden = true)
     private Company company;
 
