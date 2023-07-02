@@ -1,39 +1,31 @@
-# DESAFIO ESCUELITA PREVIRED
+1-Crear servidor postgreSQL, seguidamente crear una base de datos vacía <br>
+![Crear bd](./assets/images/create.png)<br>
+2-Usar QueryTool para insertar el script que generará la base de datos<br>
+![Seleccionar querytool](./assets/images/querytool.png)<br>
+3-Insertar el código de script.sql (Ubicado en la carpeta Script), click en ejecutar<br>
+![Insertar script](./assets/images/script.png)<br>
+4-Editar el archivo "application.properties" dentro de la ruta src/main/resources/<br>
+  Ajustar los parámetros según las propiedades de la base de datos recién creada<br>
+![Propiedades bd](./assets/images/properties.png)<br>
+5-Ejecutar el proyecto<br>
+![Swagger](./assets/images/run.png)<br>
+6-Ingresar a la url: http://localhost:8080/swagger-ui/index.html#/ (Cambiar el puerto en caso de que sea necesario, por defecto 8080)<br>
+![Swagger](./assets/images/swagger.png)<br>
+<br>
+<br>
+<br>
+NOTAS:<br>
+1-Los siguientes campos son asignados automáticamente:<br>
+	- Fecha de registro (Empresa) <br>
+	- Id (Empresa)<br>
+	- Id (Empleado)<br>
+	 Estos pueden ser dejados tal como estan.<br>
+![Swagger2](./assets/images/swagger2.png)<br>
 
-## Comenzando 🚀
+2-Al actualizar un registro, es necesario que el ID enviado en la solicitud PUT coincida con el ID del objeto JSON<br>
 
-_La jerarquía de carpetas del proyecto debe respetar lo siguiente._
+En el ejemplo se actualiza mediante la solicitud PUT (1) al empleado con el ID = 1, asignamos una empresa al empleado (flecha azul) <br>
+![Swagger4](./assets/images/swagger4.png)<br>
+Solo con escribir el ID de la empresa, el resto de campos se actualizan con los datos correspondientes. <br>
+![Swagger6](./assets/images/swagger6.png)<br>
 
-```
-	-RAÍZ
-		-> fuentes - Deja todo el código fuente del ejercicio.
-		-> script - Script de inserción de schemas, tablas y data base del ejercicio.
-```
-
-## Instrucciones del ejercicio
-
-El portal privado de PREVIRED ha decidido crear un nuevo módulo para sus clientes en empresas. Es por esto que se le ha solicitado al nuevo Desarrollador crear servicios Rest que permitan registrar la información de la(s) Empresa(s) con sus trabajadores activos asociados.
-
-Los datos de la empresa a registrar son: Rut, Razón social, fecha inserción registro. Por otra parte, para los trabajadores (Pueden ser más de uno) asociados a la empresa. Deberás registrar su Rut, Nombre, Apellido paterno, Apellido materno y Dirección física.
-
-Como el producto es nuevo, deberás crear tu solución para una base de datos Postgres y tu servicio Rest con todas las acciones para las nuevas 2 tablas (CRUD completo con acciones: Crear registro, modificar, eliminar y obtener para ambas tablas Empresa y Trabajador(es)). 
-
-Mucha suerte y danos tú mejor esfuerzo.
-
-### Requisitos (Excluyente para el cupo) 📋
-
-```
--> Se debe implementar la solución en Spring Boot, JPA/Hibernate, Maven.
--> Debes comentar tu código (Busca formas de buenas prácticas de SONAR).
--> El código debe ser escrito en Inglés o Español.
--> La solución debe contener un README.md con las instrucciones para compilar e instalar.
--> Hay bonus si usas SWAGGER (Opcional, no excluyente).
--> Enviar una copia Email a escueladetalentosti@previred.com y colocar en ASUNTO: "Postulación desafío ESCUELITA". Para confirmar la finalización de la tarea y revisión.
-```
-
-## Entrega solución
-
-+ La solución debe ser enviada vía un pull request a este repositorio "crea un Fork antes".
-+ Dudas sobre el ejercicio a escueladetalentosti@previred.com
-
-NOTA: Todos los pull request serán rechazados, esto no quiere decir que ha sido rechazada la solución, sino que es una forma de que otros postulantes no copien tu código.
